@@ -1,0 +1,147 @@
+---
+// src/components/Galeria.astro
+const imagenes = [
+  {
+    url: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?q=80&w=600&auto=format&fit=crop",
+    alt: "Cabina de Tratamiento Premium",
+    titulo: "Instalaciones de Vanguardia",
+    desc: "Un espacio diseñado para tu relajación y cuidado profesional."
+  },
+  {
+    url: "https://images.unsplash.com/photo-1560750588-73207b1ef5b8?q=80&w=600&auto=format&fit=crop",
+    alt: "Limpieza Facial Profunda",
+    titulo: "Resultados Inmediatos",
+    desc: "Tratamientos personalizados con tecnología de punta."
+  },
+  {
+    url: "https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?q=80&w=600&auto=format&fit=crop",
+    alt: "Productos de Alta Gama",
+    titulo: "Línea Dermocosmética",
+    desc: "Utilizamos solo los mejores activos para proteger tu piel."
+  }
+];
+---
+
+<section id="galeria" class="py-20 bg-slate-900 border-t border-slate-800">
+  <div class="max-w-4xl mx-auto px-4">
+    
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
+        Nuestra <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Galería Premium</span>
+      </h2>
+      <p class="text-slate-400 max-w-xl mx-auto">
+        Conoce nuestras instalaciones y la calidad de los procedimientos que realizamos.
+      </p>
+    </div>
+
+    <div class="relative group">
+      
+      <div class="overflow-hidden rounded-2xl border border-slate-700/50 bg-slate-950 shadow-2xl relative aspect-[4/3] md:aspect-[16/9]">
+        {imagenes.map((img, index) => (
+          <div 
+            data-slide={index} 
+            class={`absolute inset-0 transition-opacity duration-700 ease-in-out flex flex-col justify-end ${index === 0 ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
+          >
+            <img src={img.url} alt={img.alt} class="absolute inset-0 w-full h-full object-cover" loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent"></div>
+            
+            <div class="relative p-6 md:p-10 z-20 translate-y-2 transform transition-transform duration-500">
+              <span class="text-xs font-semibold uppercase tracking-wider text-cyan-400 mb-2 block">Destacado</span>
+              <h3 class="text-xl md:text-2xl font-bold text-white mb-2">{img.titulo}</h3>
+              <p class="text-sm md:text-base text-slate-300 max-w-lg">{img.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <button 
+        id="prev-btn" 
+        class="absolute left-4 top-1/2 -translate-y-1/2 z-30 bg-slate-900/80 hover:bg-cyan-500 text-white p-3 rounded-full border border-slate-700/50 transition-colors opacity-0 group-hover:opacity-100 focus:opacity-100"
+        aria-label="Imagen anterior"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+        </svg>
+      </button>
+
+      <button 
+        id="next-btn" 
+        class="absolute right-4 top-1/2 -translate-y-1/2 z-30 bg-slate-900/80 hover:bg-cyan-500 text-white p-3 rounded-full border border-slate-700/50 transition-colors opacity-0 group-hover:opacity-100 focus:opacity-100"
+        aria-label="Siguiente imagen"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+        </svg>
+      </button>
+
+      <div class="absolute bottom-4 left-1/2 -translate-x-1/2 z-30 flex space-x-2">
+        {imagenes.map((_, index) => (
+          <button 
+            data-dot={index} 
+            class={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${index === 0 ? 'bg-cyan-400 w-6' : 'bg-slate-500'}`}
+            aria-label={`Ir a la diapositiva ${index + 1}`}
+          ></button>
+        ))}
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  const slides = document.querySelectorAll('[data-slide]');
+  const dots = document.querySelectorAll('[data-dot]');
+  const prevBtn = document.getElementById('prev-btn');
+  const nextBtn = document.getElementById('next-btn');
+  
+  let currentIndex = 0;
+  const totalSlides = slides.length;
+
+  function updateCarousel(index) {
+    slides.forEach((slide) => {
+      const slideIndex = parseInt(slide.getAttribute('data-slide'));
+      if (slideIndex === index) {
+        slide.classList.remove('opacity-0', 'z-0');
+        slide.classList.add('opacity-100', 'z-10');
+      } else {
+        slide.classList.remove('opacity-100', 'z-10');
+        slide.classList.add('opacity-0', 'z-0');
+      }
+    });
+
+    dots.forEach((dot) => {
+      const dotIndex = parseInt(dot.getAttribute('data-dot'));
+      if (dotIndex === index) {
+        dot.classList.remove('bg-slate-500');
+        dot.classList.add('bg-cyan-400', 'w-6');
+      } else {
+        dot.classList.remove('bg-cyan-400', 'w-6');
+        dot.classList.add('bg-slate-500');
+      }
+    });
+  }
+
+  function nextSlide() {
+    currentIndex = (currentIndex + 1) % totalSlides;
+    updateCarousel(currentIndex);
+  }
+
+  function prevSlide() {
+    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+    updateCarousel(currentIndex);
+  }
+
+  // Event Listeners para clicks
+  nextBtn?.addEventListener('click', nextSlide);
+  prevBtn?.addEventListener('click', prevSlide);
+
+  dots.forEach((dot) => {
+    dot.addEventListener('click', () => {
+      currentIndex = parseInt(dot.getAttribute('data-dot'));
+      updateCarousel(currentIndex);
+    });
+  });
+
+  // Cambio automático cada 5 segundos
+  setInterval(nextSlide, 5000);
+</script>
