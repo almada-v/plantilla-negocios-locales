@@ -1,29 +1,22 @@
 ---
-import '../styles/global.css';
-import BotonWhatsapp from '../components/BotonWhatsapp.astro';
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
 import Hero from '../components/Hero.astro';
 import Servicios from '../components/Servicios.astro';
 import Galeria from '../components/Galeria.astro';
-// Importamos la Agenda
+import Resultados from '../components/Resultados.astro';
 import Agenda from '../components/Agenda.astro';
+import BotonWhatsapp from '../components/BotonWhatsapp.astro';
+import Footer from '../components/Footer.astro';
 ---
 
-<html lang="es">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<title>Cosmetología & Estética | Plantilla Premium</title>
-	</head>
-	<body class="bg-slate-900 text-white min-h-screen font-sans antialiased selection:bg-cyan-500 selection:text-slate-900">
-		
-		<Hero />
-
-		<Servicios />
-
-		<Galeria />  <Agenda />
-
-		<BotonWhatsapp />
-
-	</body>
-</html>
+<Layout title="Cosmetología & Estética | Premium">
+  <Navbar />
+  <Hero />
+  <Servicios />
+  <Galeria />
+  <Resultados />
+  <Agenda />
+  <BotonWhatsapp />
+  <Footer />
+</Layout>

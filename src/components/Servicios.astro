@@ -1,77 +1,57 @@
 ---
 // src/components/Servicios.astro
-
-// Simulamos una pequeña "Base de Datos" local en JS con los servicios de la cosmetóloga
-const servicios = [
+const tratamientos = [
   {
-    id: 1,
-    icono: "✨",
     nombre: "Limpieza Facial Profunda",
-    descripcion: "Eliminación de puntos negros, células muertas e impurezas. Incluye exfoliación, vapor de ozono y mascarilla hidratante.",
-    duracion: "60 min",
-    precio: "$450"
+    precio: "$1,200 MXN",
+    icono: "M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
   },
   {
-    id: 2,
-    icono: "💧",
-    nombre: "Hidratación con Ácido Hialurónico",
-    descripcion: "Tratamiento intensivo para pieles deshidratadas. Devuelve el brillo natural, suavidad y elasticidad de tu rostro.",
-    duracion: "45 min",
-    precio: "$600"
+    nombre: "Microdermoabrasión",
+    precio: "$1,500 MXN",
+    icono: "M9.813 15.904L9 21l5.728-2.33a3 3 0 001.52-1.724l.445-1.336M10.73 14.156A3.42c.321-.194.697-.306 1.096-.306h1.348c.399 0 .775.112 1.096.306m-3.54 0a3.42 3.42 0 00-1.096.306H8.238c-.399 0-.775-.112-1.096-.306m3.54 0l1.201-3.602a2 2 0 011.898-1.368h1.348a2 2 0 011.898 1.368l1.201 3.602"
   },
   {
-    id: 3,
-    icono: "🌿",
-    nombre: "Tratamiento Anti-Acné",
-    descripcion: "Protocolo especializado para regular la grasa cutánea, reducir la inflamación y prevenir futuras imperfecciones de la piel.",
-    duracion: "75 min",
-    precio: "$550"
+    nombre: "Peeling Químico Profesional",
+    precio: "$1,800 MXN",
+    icono: "M20.25 14.15v4.25c0 .414-.336.75-.75.75H4.5a.75.75 0 01-.75-.75V14.15M20.25 14.15a3 3 0 00-3-3H6.75a3 3 0 00-3 3M20.25 14.15v-1.65a3 3 0 00-3-3H6.75a3 3 0 00-3 3v1.65"
   }
 ];
 ---
 
-<section id="servicios" class="w-full max-w-5xl mx-auto px-6 py-16">
-  
-  <div class="text-center mb-12">
-    <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight text-white">
-      Nuestros <span class="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Tratamientos</span>
-    </h2>
-    <p class="mt-3 text-slate-400 text-sm md:text-base max-w-xl mx-auto">
-      Resultados profesionales desde la primera sesión. Todos los servicios incluyen un diagnóstico previo de tu tipo de piel.
-    </p>
-  </div>
+<section id="servicios" class="py-24 bg-gradient-to-b from-slate-950 to-slate-900 relative overflow-hidden">
+  <div class="absolute inset-0 bg-[linear-gradient(to_right,#0f172a_1px,transparent_1px),linear-gradient(to_bottom,#0f172a_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
 
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-    {servicios.map((servicio) => (
-      <div class="bg-slate-800/50 backdrop-blur-sm p-6 rounded-2xl border border-slate-700/60 flex flex-col justify-between hover:border-cyan-500/50 hover:bg-slate-800 transition-all duration-300 group shadow-lg">
-        <div>
-          <div class="w-12 h-12 rounded-xl bg-slate-700/50 flex items-center justify-center text-2xl border border-slate-600/50 group-hover:bg-cyan-500/10 group-hover:border-cyan-500/30 transition-colors duration-300">
-            {servicio.icono}
-          </div>
-          
-          <h3 class="text-xl font-bold text-white mt-4 group-hover:text-cyan-400 transition-colors duration-300">
-            {servicio.nombre}
-          </h3>
-          
-          <p class="text-slate-400 text-sm mt-3 leading-relaxed">
-            {servicio.descripcion}
-          </p>
-        </div>
+  <div class="max-w-6xl mx-auto px-4 relative z-10">
+    <div class="text-center mb-16">
+      <h2 class="text-sm font-semibold tracking-widest text-cyan-400 uppercase mb-3">Tratamientos</h2>
+      <p class="text-3xl md:text-5xl font-extrabold text-white tracking-tight">
+        Conoce tu <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Espacio de Bienestar</span>
+      </p>
+    </div>
 
-        <div class="mt-6 pt-4 border-t border-slate-700/50 flex items-center justify-between">
-          <div class="flex items-center text-slate-500 text-xs gap-1 font-medium">
-            <svg class="w-4 h-4 fill-none stroke-current" viewBox="0 0 24 24" stroke-width="2">
-              <circle cx="12" cy="12" r="10"></circle>
-              <polyline points="12 6 12 12 16 14"></polyline>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {tratamientos.map((item) => (
+        <div class="group relative rounded-2xl border border-slate-800 bg-slate-900/50 p-8 backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 hover:border-cyan-500/40 hover:shadow-[0_0_30px_rgba(34,211,238,0.05)]">
+          <div class="absolute inset-0 -z-10 rounded-2xl bg-gradient-to-b from-cyan-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          
+          <div class="w-12 h-12 rounded-xl bg-slate-950 flex items-center justify-center border border-slate-800 text-cyan-400 group-hover:border-cyan-500/30 group-hover:text-white transition-colors mb-6 shadow-inner">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d={item.icono} />
             </svg>
-            {servicio.duracion}
           </div>
-          <div class="text-lg font-black text-white bg-slate-700/30 px-3 py-1 rounded-lg border border-slate-600/30 group-hover:border-cyan-500/20">
-            {servicio.precio} <span class="text-xs font-normal text-slate-500">MXN</span>
-          </div>
-        </div>
-      </div>
-    ))}
-  </div>
 
+          <h3 class="text-xl font-bold text-white mb-2 tracking-tight">{item.nombre}</h3>
+          <p class="text-2xl font-black text-cyan-400 mb-6">{item.precio}</p>
+          
+          <a href="#agenda" class="inline-flex items-center gap-2 text-xs font-semibold tracking-wider uppercase text-slate-400 group-hover:text-white transition-colors">
+            Ver Detalles
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4 transition-transform group-hover:translate-x-1">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+            </svg>
+          </a>
+        </div>
+      ))}
+    </div>
+  </div>
 </section>
