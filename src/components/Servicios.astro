@@ -1,0 +1,77 @@
+---
+// src/components/Servicios.astro
+
+// Simulamos una pequeña "Base de Datos" local en JS con los servicios de la cosmetóloga
+const servicios = [
+  {
+    id: 1,
+    icono: "✨",
+    nombre: "Limpieza Facial Profunda",
+    descripcion: "Eliminación de puntos negros, células muertas e impurezas. Incluye exfoliación, vapor de ozono y mascarilla hidratante.",
+    duracion: "60 min",
+    precio: "$450"
+  },
+  {
+    id: 2,
+    icono: "💧",
+    nombre: "Hidratación con Ácido Hialurónico",
+    descripcion: "Tratamiento intensivo para pieles deshidratadas. Devuelve el brillo natural, suavidad y elasticidad de tu rostro.",
+    duracion: "45 min",
+    precio: "$600"
+  },
+  {
+    id: 3,
+    icono: "🌿",
+    nombre: "Tratamiento Anti-Acné",
+    descripcion: "Protocolo especializado para regular la grasa cutánea, reducir la inflamación y prevenir futuras imperfecciones de la piel.",
+    duracion: "75 min",
+    precio: "$550"
+  }
+];
+---
+
+<section id="servicios" class="w-full max-w-5xl mx-auto px-6 py-16">
+  
+  <div class="text-center mb-12">
+    <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight text-white">
+      Nuestros <span class="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Tratamientos</span>
+    </h2>
+    <p class="mt-3 text-slate-400 text-sm md:text-base max-w-xl mx-auto">
+      Resultados profesionales desde la primera sesión. Todos los servicios incluyen un diagnóstico previo de tu tipo de piel.
+    </p>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    {servicios.map((servicio) => (
+      <div class="bg-slate-800/50 backdrop-blur-sm p-6 rounded-2xl border border-slate-700/60 flex flex-col justify-between hover:border-cyan-500/50 hover:bg-slate-800 transition-all duration-300 group shadow-lg">
+        <div>
+          <div class="w-12 h-12 rounded-xl bg-slate-700/50 flex items-center justify-center text-2xl border border-slate-600/50 group-hover:bg-cyan-500/10 group-hover:border-cyan-500/30 transition-colors duration-300">
+            {servicio.icono}
+          </div>
+          
+          <h3 class="text-xl font-bold text-white mt-4 group-hover:text-cyan-400 transition-colors duration-300">
+            {servicio.nombre}
+          </h3>
+          
+          <p class="text-slate-400 text-sm mt-3 leading-relaxed">
+            {servicio.descripcion}
+          </p>
+        </div>
+
+        <div class="mt-6 pt-4 border-t border-slate-700/50 flex items-center justify-between">
+          <div class="flex items-center text-slate-500 text-xs gap-1 font-medium">
+            <svg class="w-4 h-4 fill-none stroke-current" viewBox="0 0 24 24" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            {servicio.duracion}
+          </div>
+          <div class="text-lg font-black text-white bg-slate-700/30 px-3 py-1 rounded-lg border border-slate-600/30 group-hover:border-cyan-500/20">
+            {servicio.precio} <span class="text-xs font-normal text-slate-500">MXN</span>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+
+</section>

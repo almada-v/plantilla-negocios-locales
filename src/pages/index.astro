@@ -1,11 +1,28 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import '../styles/global.css';
+import BotonWhatsapp from '../components/BotonWhatsapp.astro';
+import Hero from '../components/Hero.astro';
+import Servicios from '../components/Servicios.astro';
+// Importamos la Agenda
+import Agenda from '../components/Agenda.astro';
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<html lang="es">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<title>Cosmetología & Estética | Plantilla Premium</title>
+	</head>
+	<body class="bg-slate-900 text-white min-h-screen font-sans antialiased selection:bg-cyan-500 selection:text-slate-900">
+		
+		<Hero />
+
+		<Servicios />
+
+		<Agenda />
+
+		<BotonWhatsapp />
+
+	</body>
+</html>

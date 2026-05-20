@@ -1,0 +1,23 @@
+---
+// src/components/BotonWhatsapp.astro
+// Definimos las variables que pueden cambiar por cliente de forma dinámica
+const telefono = "523151195149"; // Reemplaza con el número real (con código de país)
+const mensaje = encodeURIComponent("¡Hola! Vi tu página web y me gustaría pedir informes sobre los paquetes de faciales.");
+const linkWhatsapp = `https://wa.me/${telefono}?text=${mensaje}`;
+---
+
+<a 
+  href={linkWhatsapp}
+  target="_blank"
+  rel="noopener noreferrer"
+  class="fixed bottom-6 right-6 z-50 flex items-center justify-center bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:scale-110 active:scale-95 transition-all duration-300 group"
+  aria-label="Contactar por WhatsApp"
+>
+  <svg class="w-7 h-7 fill-current" viewBox="0 0 24 24">
+    <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.513 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.5-5.739-1.446L0 24zm6.59-4.846c1.657.983 3.28 1.498 4.757 1.499 5.429 0 9.85-4.414 9.853-9.843.001-2.63-1.012-5.101-2.85-6.942C16.51 1.927 14.04 1.914 11.411 1.914c-5.43 0-9.852 4.414-9.855 9.842-.001 1.925.501 3.805 1.454 5.461l-.979 3.578 3.667-.962zm10.744-6.608c-.288-.144-1.702-.84-1.966-.936-.264-.096-.456-.144-.648.144-.192.288-.744.936-.912 1.128-.168.192-.336.216-.624.072-1.059-.53-1.871-.916-2.584-2.138-.192-.324.192-.301.549-1.013.06-.12.03-.228-.015-.324-.045-.096-.456-1.099-.624-1.503-.164-.393-.344-.339-.474-.346-.121-.006-.26-.008-.4-.008-.14 0-.368.052-.56.26-.192.208-.732.716-.732 1.747 0 1.032.75 2.028.855 2.172.105.144 1.477 2.256 3.578 3.163.5.216.89.345 1.196.442.502.159.959.137 1.32.083.404-.06 1.702-.696 1.943-1.368.24-.672.24-1.248.168-1.368-.072-.12-.264-.192-.552-.336z"/>
+  </svg>
+  
+  <span class="absolute right-16 scale-0 transition-all rounded bg-slate-800 p-2 text-xs text-white group-hover:scale-100 font-medium border border-slate-700 whitespace-nowrap">
+    ¿Tienes dudas? ¡Escríbeme!
+  </span>
+</a>
