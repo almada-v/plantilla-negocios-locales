@@ -1,14 +1,22 @@
 ---
 // src/components/Footer.astro
 ---
-<footer class="bg-slate-950 border-t border-slate-900 py-12 text-xs text-slate-500 tracking-wider">
-  <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-6">
-    <p>&copy; 2026 LEO ALMADA VIDRIO. Todos los derechos reservados.</p>
+<footer class="bg-stone-50 border-t border-stone-200/60 py-12 text-[11px] text-stone-400 tracking-[0.2em] uppercase">
+  <div class="max-w-6xl mx-auto px-4 flex flex-col items-center gap-8">
     
-    <div class="flex flex-wrap justify-center gap-6 font-medium">
-      <a href="#" class="hover:text-cyan-400 transition-colors uppercase">Aviso de Privacidad</a>
-      <a href="#" class="hover:text-cyan-400 transition-colors uppercase">Ubicación</a>
-      <a href="#" class="hover:text-cyan-400 transition-colors uppercase">Políticas</a>
+    <div class="flex items-center gap-2 font-semibold text-stone-900 tracking-[0.3em]">
+      <span class="w-1.5 h-1.5 rounded-full bg-amber-600"></span>
+      LEO ALMADA VIDRIO
+    </div>
+
+    <div class="flex flex-wrap justify-center gap-8 font-semibold text-stone-500">
+      <a href="#" class="hover:text-[#556b2f] transition-colors">Aviso de Privacidad</a>
+      <a href="#" class="hover:text-[#556b2f] transition-colors">Ubicación</a>
+      <a href="#" class="hover:text-[#556b2f] transition-colors">Políticas</a>
+    </div>
+
+    <div class="text-stone-400/70 text-[10px]">
+      &copy; 2026 LEO ALMADA VIDRIO. TODOS LOS DERECHOS RESERVADOS.
     </div>
   </div>
 </footer>

@@ -1,91 +1,55 @@
 ---
 // src/components/Agenda.astro
-
-// Variables de configuración rápida para tu cliente
-const modoGoogleCalendar = true; // ➔ CAMBIA A "true" SI EL CLIENTE PAGA LA VERSIÓN PRO
-const telefonoWhatsApp = "523151195149"; // Número del negocio
+const modoGoogleCalendar = false; 
+const telefonoWhatsApp = "523151195149";
 ---
 
-<section
-  id="contacto"
-  class="w-full max-w-4xl mx-auto px-6 py-16 border-t border-slate-800"
->
-  <div class="text-center mb-12">
-    <h2 class="text-3xl md:text-4xl font-extrabold text-white">
-      Reserva tu <span
-        class="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent"
-        >Espacio</span
-      >
+<section id="agenda" class="w-full max-w-4xl mx-auto px-6 py-24">
+  <div class="text-center mb-16">
+    <h2 class="text-3xl md:text-4xl font-light text-stone-900 tracking-tight">
+      Reserva tu <span class="font-serif italic text-transparent bg-clip-text bg-gradient-to-r from-amber-600 to-amber-700">Espacio</span>
     </h2>
-    <p class="mt-3 text-slate-400 text-sm md:text-base max-w-md mx-auto">
-      Elige la modalidad que prefieras para asegurar tu tratamiento y lucir una
-      piel espectacular.
+    <p class="mt-4 text-stone-500 text-sm md:text-base max-w-md mx-auto font-light">
+      Elige la modalidad que prefieras para asegurar tu tratamiento y lucir una piel radiante.
     </p>
   </div>
 
-  <div
-    class="bg-slate-800/30 backdrop-blur-sm rounded-3xl border border-slate-800 p-6 md:p-10 shadow-2xl"
-  >
+  <div class="bg-white rounded-3xl border border-stone-200 p-6 md:p-10 shadow-sm shadow-stone-200/50">
     {
       modoGoogleCalendar ? (
-        <div class="w-full overflow-hidden rounded-2xl bg-slate-900 border border-slate-700/50 shadow-inner">
+        <div class="w-full overflow-hidden rounded-2xl border border-stone-100">
           <iframe
             src="https://calendar.app.google/vJ58zUGu1VzDXrE88"
             style="border: 0;"
             width="100%"
             height="700"
-            frameborder="0"
-            class="w-full min-h-[650px] md:min-h-[700px]"
+            class="w-full min-h-[600px] md:min-h-[700px] bg-white"
           />
         </div>
-        
       ) : (
         <div class="max-w-md mx-auto">
-          <form id="appointment-form" class="space-y-5">
+          <form id="appointment-form" class="space-y-6">
             <div>
-              <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">
-                Tu Nombre completo
-              </label>
-              <input
-                type="text"
-                id="form-name"
-                required
-                class="w-full bg-slate-900/80 border border-slate-700 rounded-xl px-4 py-3 text-white placeholder-slate-600 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all"
-                placeholder="Ej. Ana Paula Galindo"
-              />
+              <label class="block text-[10px] font-bold text-stone-400 uppercase tracking-widest mb-2">Nombre completo</label>
+              <input type="text" id="form-name" required class="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-3 text-stone-800 focus:outline-none focus:border-[#556b2f] transition-all" placeholder="Ej. Ana Paula" />
             </div>
 
             <div>
-              <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">
-                Tratamiento que buscas
-              </label>
-              <select
-                id="form-service"
-                class="w-full bg-slate-900/80 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500 transition-all"
-              >
-                <option>Limpieza Facial Profunda ($450 MXN)</option>
-                <option>Hidratación con Ácido Hialurónico ($600 MXN)</option>
-                <option>Tratamiento Anti-Acné ($550 MXN)</option>
+              <label class="block text-[10px] font-bold text-stone-400 uppercase tracking-widest mb-2">Tratamiento</label>
+              <select id="form-service" class="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-3 text-stone-800 focus:outline-none focus:border-[#556b2f] transition-all">
+                <option>Limpieza Facial Profunda</option>
+                <option>Microdermoabrasión</option>
+                <option>Peeling Químico Profesional</option>
               </select>
             </div>
 
             <div>
-              <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">
-                Día y Hora sugerida
-              </label>
-              <input
-                type="datetime-local"
-                id="form-date"
-                required
-                class="w-full bg-slate-900/80 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500 transition-all"
-              />
+              <label class="block text-[10px] font-bold text-stone-400 uppercase tracking-widest mb-2">Fecha y hora</label>
+              <input type="datetime-local" id="form-date" required class="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-3 text-stone-800 focus:outline-none focus:border-[#556b2f] transition-all" />
             </div>
 
-            <button
-              type="submit"
-              class="w-full py-4 bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700 text-white font-bold rounded-xl shadow-lg transition-all duration-300 hover:scale-[1.02] flex items-center justify-center gap-2 mt-2"
-            >
-              Solicitar Cita por WhatsApp
+            <button type="submit" class="w-full py-4 bg-[#556b2f] hover:bg-[#3b4d1f] text-white font-medium rounded-xl transition-all duration-300 tracking-wide">
+              Confirmar por WhatsApp
             </button>
           </form>
         </div>
@@ -99,18 +63,12 @@ const telefonoWhatsApp = "523151195149"; // Número del negocio
   if (form) {
     form.addEventListener("submit", (e) => {
       e.preventDefault();
-
       const name = document.getElementById("form-name").value;
       const service = document.getElementById("form-service").value;
       const dateInput = document.getElementById("form-date").value;
-
-      // Formatear un poco la fecha nativa para que sea leíble en el mensaje
       const fechaFormateada = dateInput.replace("T", " a las ");
-
-      const textoMensaje = `¡Hola! Me llamo *${name}* y me gustaría agendar una cita para el servicio de *${service}* el día *${fechaFormateada}*. ¿Tienen espacio disponible?`;
-      const url = `https://wa.me/${telefonoWhatsApp}?text=${encodeURIComponent(textoMensaje)}`;
-
-      window.open(url, "_blank");
+      const textoMensaje = `¡Hola! Me llamo *${name}* y me gustaría agendar una cita para *${service}* el día *${fechaFormateada}*.`;
+      window.open(`https://wa.me/${telefonoWhatsApp}?text=${encodeURIComponent(textoMensaje)}`, "_blank");
     });
   }
 </script>

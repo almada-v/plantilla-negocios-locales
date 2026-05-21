@@ -1,23 +1,27 @@
 ---
 // src/components/Navbar.astro
 ---
-<header class="sticky top-0 z-50 w-full border-b border-slate-800/80 bg-slate-950/70 backdrop-blur-md">
+<header class="sticky top-0 z-50 w-full border-b border-stone-200/60 bg-white/80 backdrop-blur-md">
   <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
-    <a href="#" class="text-lg font-bold text-white tracking-wider flex items-center gap-2">
-      <span class="w-2.5 h-2.5 rounded-full bg-cyan-400 shadow-[0_0_10px_#22d3ee]"></span>
+    
+    <a href="#" class="text-xs font-semibold tracking-widest text-stone-900 flex items-center gap-2 uppercase">
+      <span class="w-2 h-2 rounded-full bg-amber-400/90 shadow-[0_0_8px_rgba(217,119,6,0.4)]"></span>
       LEO ALMADA VIDRIO
     </a>
 
-    <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-400">
-      <a href="#" class="hover:text-cyan-400 transition-colors">INICIO</a>
-      <a href="#servicios" class="hover:text-cyan-400 transition-colors">TRATAMIENTOS</a>
-      <a href="#galeria" class="hover:text-cyan-400 transition-colors">NUESTRA CABINA</a>
-      <a href="#agenda" class="hover:text-cyan-400 transition-colors">RESULTADOS</a>
+    <nav class="hidden md:flex items-center space-x-8 text-xs font-semibold tracking-widest text-stone-500">
+      <a href="#" style="--hover-color: #556b2f;" class="hover:text-[var(--hover-color)] transition-colors">INICIO</a>
+      <a href="#servicios" style="--hover-color: #556b2f;" class="hover:text-[var(--hover-color)] transition-colors">TRATAMIENTOS</a>
+      <a href="#galeria" style="--hover-color: #556b2f;" class="hover:text-[var(--hover-color)] transition-colors">NUESTRA CABINA</a>
+      <a href="#resultados" style="--hover-color: #556b2f;" class="hover:text-[var(--hover-color)] transition-colors">RESULTADOS</a>
     </nav>
 
     <a 
       href="#agenda" 
-      class="text-xs font-semibold tracking-wider text-cyan-400 uppercase border border-cyan-500/30 px-4 py-2 rounded-full bg-cyan-500/5 hover:bg-cyan-500 hover:text-slate-950 transition-all duration-300 shadow-[0_0_15px_rgba(34,211,238,0.1)] hover:shadow-[0_0_20px_rgba(34,211,238,0.4)]"
+      class="text-[11px] font-semibold tracking-widest uppercase border px-5 py-2 rounded-full transition-all duration-300 text-center"
+      style="border-color: rgba(212, 175, 55, 0.4); color: #556b2f; background-color: rgba(255, 255, 255, 0.5);"
+      onmouseover="this.style.backgroundColor='#556b2f'; this.style.textColor='#ffffff'; this.style.color='#ffffff';"
+      onmouseout="this.style.backgroundColor='rgba(255, 255, 255, 0.5)'; this.style.color='#556b2f';"
     >
       Agendar Cita
     </a>
