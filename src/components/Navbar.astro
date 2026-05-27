@@ -1,29 +1,41 @@
 ---
-// src/components/Navbar.astro
+// Navbar.astro
+const linkWhatsApp = `https://wa.me/523151195149?text=${encodeURIComponent("¡Hola! Me gustaría agendar una consulta.")}`;
+
 ---
-<header class="sticky top-0 z-50 w-full border-b border-stone-200/60 bg-white/80 backdrop-blur-md">
-  <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+
+<header class="fixed top-0 left-0 w-full z-50 transition-all duration-500 ease-in-out" id="navbar">
+  <div class="max-w-6xl mx-auto px-4 h-20 flex items-center justify-between">
     
-    <a href="#" class="text-xs font-semibold tracking-widest text-stone-900 flex items-center gap-2 uppercase">
-      <span class="w-2 h-2 rounded-full bg-amber-400/90 shadow-[0_0_8px_rgba(217,119,6,0.4)]"></span>
-      LEO ALMADA VIDRIO
+    <a href="/" class="text-xs font-bold tracking-[0.2em] text-stone-900 flex items-center gap-2 uppercase">
+      <span class="w-2 h-2 rounded-full"></span>
+      COMPAÑIA
     </a>
 
-    <nav class="hidden md:flex items-center space-x-8 text-xs font-semibold tracking-widest text-stone-500">
-      <a href="#" style="--hover-color: #556b2f;" class="hover:text-[var(--hover-color)] transition-colors">INICIO</a>
-      <a href="#servicios" style="--hover-color: #556b2f;" class="hover:text-[var(--hover-color)] transition-colors">TRATAMIENTOS</a>
-      <a href="#galeria" style="--hover-color: #556b2f;" class="hover:text-[var(--hover-color)] transition-colors">NUESTRA CABINA</a>
-      <a href="#resultados" style="--hover-color: #556b2f;" class="hover:text-[var(--hover-color)] transition-colors">RESULTADOS</a>
+    <nav class="hidden md:flex items-center space-x-10 text-[10px] font-bold tracking-[0.3em] text-stone-500 uppercase">
+      <a href="/" class="hover:text-[#556b2f] transition-all duration-300">Inicio</a>
+      <a href="#servicios" class="hover:text-[#556b2f] transition-all duration-300">Tratamientos</a>
+      <a href="#galeria" class="hover:text-[#556b2f] transition-all duration-300">Cabina</a>
+      <a href="#resultados" class="hover:text-[#556b2f] transition-all duration-300">Resultados</a>
     </nav>
 
-    <a 
-      href="#agenda" 
-      class="text-[11px] font-semibold tracking-widest uppercase border px-5 py-2 rounded-full transition-all duration-300 text-center"
-      style="border-color: rgba(212, 175, 55, 0.4); color: #556b2f; background-color: rgba(255, 255, 255, 0.5);"
-      onmouseover="this.style.backgroundColor='#556b2f'; this.style.textColor='#ffffff'; this.style.color='#ffffff';"
-      onmouseout="this.style.backgroundColor='rgba(255, 255, 255, 0.5)'; this.style.color='#556b2f';"
-    >
+    <a  href={linkWhatsApp} target="_blank"
+       class="px-6 py-2.5 text-[10px] font-bold tracking-[0.2em] uppercase border border-[#556b2f]/30 text-[#556b2f] rounded-full transition-all duration-500 hover:bg-[#556b2f] hover:text-white hover:border-[#556b2f] active:scale-95 shadow-sm">
       Agendar Cita
     </a>
   </div>
 </header>
+
+<script>
+  // Transición suave al hacer scroll
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+      navbar?.classList.add('bg-white/80', 'backdrop-blur-lg', 'shadow-sm', 'h-16');
+      navbar?.classList.remove('h-20');
+    } else {
+      navbar?.classList.remove('bg-white/80', 'backdrop-blur-lg', 'shadow-sm', 'h-16');
+      navbar?.classList.add('h-20');
+    }
+  });
+</script>

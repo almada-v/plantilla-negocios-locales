@@ -1,32 +1,77 @@
 ---
-// src/components/Hero.astro
-const titulo = "Resalta tu belleza natural";
-const subtitulo = "Especialista en cuidado facial, limpiezas profundas y tratamientos personalizados para que tu piel luzca radiante y saludable.";
+import { Image } from 'astro:assets';
+import fondoImagen from '../assets/FONDO1.avif'; 
+
+const linkWhatsApp = `https://wa.me/523151195149?text=${encodeURIComponent("¡Hola! Me gustaría agendar una consulta.")}`;
 ---
 
-<section class="relative w-full h-[70vh] flex items-center justify-center overflow-hidden bg-[#2d3a24]">
+<section class="relative w-full min-h-[90svh] flex flex-col lg:flex-row bg-[#fdfdfc] overflow-hidden">
   
-  <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_#556b2f,_transparent_70%)] opacity-60"></div>
-  
-  <div class="relative max-w-3xl mx-auto px-6 text-center">
-    <h1 class="text-4xl md:text-6xl font-light tracking-wide text-white leading-tight">
-      {titulo} 
-      <span class="block mt-2 font-serif italic text-amber-300">
-        Cuidado Profesional
-      </span>
-    </h1>
-    
-    <p class="mt-8 text-base md:text-lg text-stone-200 leading-relaxed max-w-2xl mx-auto font-light">
-      {subtitulo}
-    </p>
+  <div class="relative w-full h-[45svh] lg:h-full lg:w-[60%] z-10 shrink-0">
+    <Image 
+      src={fondoImagen} 
+      alt="Cosmética facial" 
+      class="w-full h-full object-cover"
+      quality="high"
+      format="webp"
+    />
+    <div class="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-r from-[#fdfdfc] via-transparent to-transparent"></div>
+  </div>
 
-    <div class="mt-12 flex flex-col sm:flex-row gap-4 justify-center items-center">
-      <a href="#servicios" class="px-8 py-4 bg-white text-[#2d3a24] hover:bg-stone-100 font-medium tracking-wider text-sm uppercase rounded-full shadow-lg transition-all duration-300">
-        Ver Servicios
-      </a>
-      <a href="#agenda" class="px-8 py-4 bg-transparent hover:bg-white/10 text-white border border-white/30 font-semibold tracking-wider text-sm uppercase rounded-full transition-all duration-300">
-        Agendar Cita
-      </a>
+  <div class="relative w-full lg:flex-1 flex flex-col justify-center px-8 py-12 lg:px-20 z-20 bg-[#fdfdfc] items-center lg:items-start text-center lg:text-left">
+    <div class="animate-enter-up space-y-6 max-w-lg mx-auto lg:mx-0">
+      <span class="inline-block text-[10px] font-bold tracking-[0.3em] uppercase text-[#556b2f]">
+        TRATAMIENTOS FACIALES A LA MEDIDA
+      </span>
+
+      <h1 class="text-4xl md:text-6xl lg:text-7xl font-serif text-stone-900 leading-[0.95] tracking-tight">
+        Resultados <br />
+        <span class="italic text-[#556b2f]">que se notan.</span>
+      </h1>
+
+      <p class="text-stone-600 text-lg leading-relaxed">
+        Elevamos el cuidado de tu piel a un nivel de experiencia premium con tratamientos personalizados.
+      </p>
+
+      <div class="pt-4 w-full flex justify-center lg:justify-start">
+        <a href={linkWhatsApp} target="_blank" class="relative inline-block w-full max-w-[300px]">
+          <button class="flex items-center justify-center bg-[#556b2f] text-sm text-white font-medium rounded-xl transition-all px-6 py-4 w-full active:scale-95 shadow-lg shadow-[#556b2f]/20" type="button">
+            Agendar Consulta
+          </button>
+          
+          <div class="absolute inset-0 pointer-events-none text-white">
+            <div class="absolute z-10 animate-magic-sparkle" style="top: -15%; left: 95%; animation-delay: 0.5s;"><svg viewBox="0 0 68 68" height="10" width="10"><path fill="currentColor" d="M26.5 25.5C19.0043 33.3697 0 34 0 34C0 34 19.1013 35.3684 26.5 43.5C33.234 50.901 34 68 34 68C34 68 36.9884 50.7065 44.5 43.5C51.6431 36.647 68 34 68 34C68 34 51.6947 32.0939 44.5 25.5C36.5605 18.2235 34 0 34 0C34 0 33.6591 17.9837 26.5 25.5Z"></path></svg></div>
+            <div class="absolute z-10 animate-magic-sparkle" style="top: 7%; left: -5%; animation-delay: 0.33s;"><svg viewBox="0 0 68 68" height="13" width="13"><path fill="currentColor" d="M26.5 25.5C19.0043 33.3697 0 34 0 34C0 34 19.1013 35.3684 26.5 43.5C33.234 50.901 34 68 34 68C34 68 36.9884 50.7065 44.5 43.5C51.6431 36.647 68 34 68 34C68 34 51.6947 32.0939 44.5 25.5C36.5605 18.2235 34 0 34 0C34 0 33.6591 17.9837 26.5 25.5Z"></path></svg></div>
+            <div class="absolute z-10 animate-magic-sparkle" style="top: 93%; left: 23%; animation-delay: 0.6s;"><svg viewBox="0 0 68 68" height="11" width="11"><path fill="currentColor" d="M26.5 25.5C19.0043 33.3697 0 34 0 34C0 34 19.1013 35.3684 26.5 43.5C33.234 50.901 34 68 34 68C34 68 36.9884 50.7065 44.5 43.5C51.6431 36.647 68 34 68 34C68 34 51.6947 32.0939 44.5 25.5C36.5605 18.2235 34 0 34 0C34 0 33.6591 17.9837 26.5 25.5Z"></path></svg></div>
+            <div class="absolute z-10 animate-magic-sparkle" style="top: 43%; left: 10%; animation-delay: 0.9s;"><svg viewBox="0 0 68 68" height="10" width="10"><path fill="currentColor" d="M26.5 25.5C19.0043 33.3697 0 34 0 34C0 34 19.1013 35.3684 26.5 43.5C33.234 50.901 34 68 34 68C34 68 36.9884 50.7065 44.5 43.5C51.6431 36.647 68 34 68 34C68 34 51.6947 32.0939 44.5 25.5C36.5605 18.2235 34 0 34 0C34 0 33.6591 17.9837 26.5 25.5Z"></path></svg></div>
+            <div class="absolute z-10 animate-magic-sparkle" style="top: 100%; left: 5%; animation-delay: 1.2s;"><svg viewBox="0 0 68 68" height="13" width="13"><path fill="currentColor" d="M26.5 25.5C19.0043 33.3697 0 34 0 34C0 34 19.1013 35.3684 26.5 43.5C33.234 50.901 34 68 34 68C34 68 36.9884 50.7065 44.5 43.5C51.6431 36.647 68 34 68 34C68 34 51.6947 32.0939 44.5 25.5C36.5605 18.2235 34 0 34 0C34 0 33.6591 17.9837 26.5 25.5Z"></path></svg></div>
+            <div class="absolute z-10 animate-magic-sparkle" style="top: 15%; left: 88%; animation-delay: 1.5s;"><svg viewBox="0 0 68 68" height="9" width="9"><path fill="currentColor" d="M26.5 25.5C19.0043 33.3697 0 34 0 34C0 34 19.1013 35.3684 26.5 43.5C33.234 50.901 34 68 34 68C34 68 36.9884 50.7065 44.5 43.5C51.6431 36.647 68 34 68 34C68 34 51.6947 32.0939 44.5 25.5C36.5605 18.2235 34 0 34 0C34 0 33.6591 17.9837 26.5 25.5Z"></path></svg></div>
+            <div class="absolute z-10 animate-magic-sparkle" style="top: 99%; left: 95%; animation-delay: 1.8s;"><svg viewBox="0 0 68 68" height="10" width="10"><path fill="currentColor" d="M26.5 25.5C19.0043 33.3697 0 34 0 34C0 34 19.1013 35.3684 26.5 43.5C33.234 50.901 34 68 34 68C34 68 36.9884 50.7065 44.5 43.5C51.6431 36.647 68 34 68 34C68 34 51.6947 32.0939 44.5 25.5C36.5605 18.2235 34 0 34 0C34 0 33.6591 17.9837 26.5 25.5Z"></path></svg></div>
+            <div class="absolute z-10 animate-magic-sparkle" style="top: 64%; left: 99%; animation-delay: 1.9s;"><svg viewBox="0 0 68 68" height="13" width="13"><path fill="currentColor" d="M26.5 25.5C19.0043 33.3697 0 34 0 34C0 34 19.1013 35.3684 26.5 43.5C33.234 50.901 34 68 34 68C34 68 36.9884 50.7065 44.5 43.5C51.6431 36.647 68 34 68 34C68 34 51.6947 32.0939 44.5 25.5C36.5605 18.2235 34 0 34 0C34 0 33.6591 17.9837 26.5 25.5Z"></path></svg></div>
+            <div class="absolute z-10 animate-magic-sparkle" style="top: 14%; left: 45%; animation-delay: 1.4s;"><svg viewBox="0 0 68 68" height="9" width="9"><path fill="currentColor" d="M26.5 25.5C19.0043 33.3697 0 34 0 34C0 34 19.1013 35.3684 26.5 43.5C33.234 50.901 34 68 34 68C34 68 36.9884 50.7065 44.5 43.5C51.6431 36.647 68 34 68 34C68 34 51.6947 32.0939 44.5 25.5C36.5605 18.2235 34 0 34 0C34 0 33.6591 17.9837 26.5 25.5Z"></path></svg></div>
+            <div class="absolute z-10 animate-magic-sparkle" style="top: 0%; left: 48%; animation-delay: 1.7s;"><svg viewBox="0 0 68 68" height="13" width="13"><path fill="currentColor" d="M26.5 25.5C19.0043 33.3697 0 34 0 34C0 34 19.1013 35.3684 26.5 43.5C33.234 50.901 34 68 34 68C34 68 36.9884 50.7065 44.5 43.5C51.6431 36.647 68 34 68 34C68 34 51.6947 32.0939 44.5 25.5C36.5605 18.2235 34 0 34 0C34 0 33.6591 17.9837 26.5 25.5Z"></path></svg></div>
+          </div>
+        </a>
+      </div>
     </div>
   </div>
 </section>
+
+<style>
+  @keyframes enterUp {
+    0% { opacity: 0; transform: translateY(30px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  .animate-enter-up { animation: enterUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+
+  @keyframes sparkle {
+    0%, 100% { opacity: 0; transform: scale(0) rotate(0deg); }
+    50% { opacity: 1; transform: scale(1.2) rotate(180deg); }
+  }
+  .animate-magic-sparkle {
+    animation: sparkle 2.5s infinite ease-in-out;
+    filter: 
+      drop-shadow(0 0 4px rgba(85, 107, 47, 0.6)) 
+      drop-shadow(0 0 1px rgba(85, 107, 47, 1));
+  }
+</style>
