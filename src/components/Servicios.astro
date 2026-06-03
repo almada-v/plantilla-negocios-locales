@@ -1,98 +1,346 @@
 ---
 // src/components/Servicios.astro
+import { Image } from 'astro:assets';
+
+import fotoLimpieza from '../assets/limpieza.avif';
+import fotoMicro from '../assets/micro.avif';
+import fotoPeeling from '../assets/peeling.webp';
+
 const tratamientos = [
   {
+    id: "limpieza",
     nombre: "Limpieza Facial Profunda",
-    precio: "$1,200 MXN",
+    precio: 1200, 
+    precioTexto: "$1,200 MXN",
     desc: "Un tratamiento exhaustivo para eliminar impurezas y células muertas, dejando tu piel renovada y luminosa.",
-    beneficios: ["Eliminación profunda de puntos negros", "Hidratación equilibrada", "Mejora la textura de la piel"],
-    foto: "https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?q=80&w=600&auto=format&fit=crop"
+    detalles: ["Limpieza con vapor ozono", "Extracción de comedones", "Mascarilla hidroplástica según tu tipo de piel", "Altafrecuencia antiséptica"],
+    foto: fotoLimpieza
   },
   {
+    id: "micro",
     nombre: "Microdermoabrasión",
-    precio: "$1,500 MXN",
+    precio: 1500,
+    precioTexto: "$1,500 MXN",
     desc: "Técnica de exfoliación mecánica que estimula la producción de colágeno y rejuvenece el rostro.",
-    beneficios: ["Reduce líneas de expresión", "Atenúa manchas solares", "Efecto piel de porcelana"],
-    foto: "https://images.unsplash.com/photo-1560750588-73207b1ef5b8?q=80&w=600&auto=format&fit=crop"
+    detalles: ["Punta de diamante médica", "Peeling ultrasónico inicial", "Aplicación de ampolleta hidratante", "Protección solar premium"],
+    foto: fotoMicro
   },
   {
+    id: "peeling",
     nombre: "Peeling Químico",
-    precio: "$1,800 MXN",
+    precio: 1800,
+    precioTexto: "$1,800 MXN",
     desc: "Renovación celular profunda mediante activos químicos profesionales para un tono unificado.",
-    beneficios: ["Elimina células muertas", "Control de brotes de acné", "Unifica el tono facial"],
-    foto: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?q=80&w=600&auto=format&fit=crop"
+    detalles: ["Evaluación del fototipo de piel", "Aplicación de ácidos controlados", "Neutralización celular", "Crema reparadora dérmica"],
+    foto: fotoPeeling
   }
 ];
 
 const telefonoWhatsApp = "523151195149";
 ---
 
-<section id="servicios" class="py-24 bg-[#fdfdfc]">
+<section id="servicios" class="py-16 md:py-24 bg-[#fdfdfc] select-none overflow-hidden pb-32">
   <div class="max-w-6xl mx-auto px-6">
-    <div class="mb-16 text-center">
-      <h2 class="text-3xl md:text-5xl font-serif text-stone-900">Nuestros Tratamientos</h2>
-      <div class="w-12 h-0.5 bg-[#556b2f] mx-auto mt-6"></div>
+    <div class="mb-12 text-center">
+      <span class="text-[10px] font-bold tracking-[0.3em] uppercase text-[#556b2f]">
+        DISEÑA TU PAQUETE
+      </span>
+      <h2 class="text-3xl md:text-5xl font-serif text-stone-900 mt-2">Tratamientos Disponibles</h2>
+      <p class="text-stone-500 text-xs sm:text-sm mt-2 max-w-sm mx-auto font-light">Selecciona los tratamientos que deseas combinar en tu consulta o agenda uno directamente.</p>
+      <div class="w-12 h-0.5 bg-[#556b2f] mx-auto mt-4"></div>
     </div>
 
-    <div class="flex gap-8 overflow-x-auto pb-8 snap-x snap-mandatory scrollbar-hide">
-      {tratamientos.map((item, i) => (
-        <div class="min-w-[280px] md:min-w-[350px] snap-start flex flex-col bg-white rounded-2xl border border-stone-100 shadow-sm hover:shadow-xl transition-all duration-500 overflow-hidden group">
-          <img src={item.foto} alt={item.nombre} class="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-105" />
-          <div class="p-8 flex flex-col flex-grow">
-            <h3 class="text-xl font-medium text-stone-900 mb-2">{item.nombre}</h3>
-            <p class="text-[#556b2f] font-semibold mb-4">{item.precio}</p>
-            <p class="text-stone-500 text-sm leading-relaxed mb-6 flex-grow">{item.desc}</p>
-            <button 
-              onclick={`openModal(${i})`}
-              class="w-full py-4 border border-stone-900 text-stone-900 hover:bg-stone-900 hover:text-white transition-all uppercase text-[10px] tracking-widest font-bold"
-            >
-              Conocer más
-            </button>
+    <!-- Carrusel Táctil Responsivo -->
+    <div class="flex gap-6 overflow-x-auto pb-8 pt-2 snap-x snap-mandatory scrollbar-none scroll-smooth items-stretch">
+      {tratamientos.map((item) => (
+        <div class="tarjeta-tratamiento min-w-[85%] sm:min-w-[320px] md:min-w-[350px] snap-center md:snap-start flex flex-col bg-white rounded-3xl border border-stone-100 shadow-[0_4px_20px_rgba(0,0,0,0.01)] overflow-hidden transition-all duration-300">
+          
+          <div class="w-full h-52 sm:h-60 overflow-hidden relative">
+            <Image src={item.foto} alt={item.nombre} class="w-full h-full object-cover transition-transform duration-700 image-zoom" loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
           </div>
+
+          <div class="p-6 sm:p-8 flex flex-col flex-grow text-left justify-between">
+            <div class="space-y-2">
+              <h3 class="text-lg sm:text-xl font-serif text-stone-900 leading-tight">{item.nombre}</h3>
+              <p class="text-[#556b2f] font-medium text-sm sm:text-base font-sans tracking-wide">{item.precioTexto}</p>
+              <p class="text-stone-500 text-xs sm:text-sm leading-relaxed pt-2 font-light">{item.desc}</p>
+              
+              <!-- ACORDEÓN DE DETALLES PROFESIONALES -->
+              <div class="pt-2">
+                <button class="btn-detalles flex items-center gap-1 text-[10px] font-bold tracking-wider text-stone-400 uppercase transition-colors duration-200 hover:text-stone-600 [webkit-tap-highlight-color:transparent]">
+                  <span>Ver lo que incluye</span>
+                  <svg class="w-3 h-3 transition-transform duration-300 icon-flecha" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path>
+                  </svg>
+                </button>
+                
+                <div class="contenedor-detalles max-h-0 opacity-0 overflow-hidden transition-all duration-300 ease-in-out">
+                  <ul class="pt-3 space-y-1.5 border-t border-stone-100 mt-2">
+                    {item.detalles.map((detalle) => (
+                      <li class="text-stone-500 text-xs flex items-start gap-2 font-light">
+                        <span class="text-[#556b2f] mt-0.5">•</span>
+                        <span>{detalle}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Doble Botonera Responsiva -->
+            <div class="pt-6 grid grid-cols-2 gap-2">
+              <button 
+                data-id={item.id}
+                data-nombre={item.nombre}
+                data-precio={item.precio}
+                class="btn-seleccionar w-full py-3.5 border border-stone-900 text-stone-900 transition-all duration-100 uppercase text-[9px] tracking-wider font-bold rounded-xl touch-manipulation [webkit-tap-highlight-color:transparent]"
+              >
+                + Carrito
+              </button>
+              
+              <button 
+                data-nombre={item.nombre}
+                data-precio={item.precioTexto}
+                class="btn-agendar-ya w-full py-3.5 bg-stone-900 text-white transition-all duration-100 uppercase text-[9px] tracking-wider font-bold rounded-xl touch-manipulation [webkit-tap-highlight-color:transparent] active:bg-stone-800"
+              >
+                Agendar Ya
+              </button>
+            </div>
+          </div>
+
         </div>
       ))}
     </div>
   </div>
 </section>
 
-<div id="modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4">
-  <div class="absolute inset-0 bg-stone-900/40 backdrop-blur-sm" onclick="closeModal()"></div>
-  <div class="bg-white w-full max-w-md rounded-2xl shadow-2xl relative animate-in fade-in zoom-in duration-300">
-    <button onclick="closeModal()" class="absolute top-4 right-4 text-stone-400 hover:text-stone-900 z-10">✕</button>
-    <div class="p-8">
-      <h3 id="modal-titulo" class="text-2xl font-serif mb-2"></h3>
-      <p id="modal-desc" class="text-stone-500 text-sm mb-6"></p>
-      <ul id="modal-beneficios" class="space-y-2 text-stone-600 mb-8 text-sm"></ul>
-      
-      <button 
-        id="btn-whatsapp"
-        class="w-full py-4 bg-[#556b2f] text-white uppercase text-[10px] tracking-widest font-bold hover:bg-[#3b4d1f] transition-all rounded-full shadow-lg"
-      >
-        Agendar por WhatsApp
-      </button>
+<!-- BARRA FLOTANTE DEL CARRITO PREMIUM (DISEÑO MÁS LIMPIO) -->
+<div 
+  id="barra-carrito" 
+  class="fixed bottom-0 left-0 w-full bg-white/95 backdrop-blur-md border-t border-stone-200/60 z-50 shadow-[0_-12px_40px_rgba(28,25,23,0.08)] transition-all duration-300 translate-y-full select-none rounded-t-3xl max-h-[85vh] flex flex-col"
+>
+  <!-- Cabecera de Control Premium -->
+  <button id="btn-toggle-resumen" class="w-full py-4 flex items-center justify-center gap-2 border-b border-stone-100/80 bg-stone-50/60 [webkit-tap-highlight-color:transparent] rounded-t-3xl transition-colors duration-200 active:bg-stone-100/50">
+    <span id="txt-toggle" class="text-[10px] font-bold tracking-[0.2em] text-stone-500 uppercase">Ver resumen de servicios</span>
+    <svg id="flecha-resumen" class="w-3 h-3 text-stone-400 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 15l7-7 7 7"></path>
+    </svg>
+  </button>
+
+  <!-- Contenedor del Resumen Estilizado (Sin encabezado de texto) -->
+  <div id="cuerpo-resumen" class="max-h-0 opacity-0 overflow-y-auto px-6 bg-stone-50/30 transition-all duration-300 ease-in-out">
+    <ul id="lista-resumen-items" class="divide-y divide-stone-100/80 max-h-56 overflow-y-auto scrollbar-none py-1">
+      <!-- Los elementos seleccionados con el icono de basurero se inyectan directamente aquí -->
+    </ul>
+  </div>
+
+  <!-- Fila de Control Base Inferior (Fija) -->
+  <div class="p-5 px-6 flex items-center justify-between gap-4 bg-white border-t border-stone-100/40 rounded-b-3xl">
+    <div class="flex flex-col text-left">
+      <span id="carrito-cantidad" class="text-[9px] font-bold tracking-[0.15em] text-[#556b2f] uppercase">0 TRATAMIENTOS</span>
+      <span id="carrito-total" class="text-lg font-serif text-stone-900 font-medium tracking-wide">$0 MXN</span>
     </div>
+
+    <button 
+      id="btn-enviar-carrito"
+      data-telefono={telefonoWhatsApp}
+      class="flex items-center justify-center gap-2 bg-[#556b2f] text-white text-xs font-bold uppercase tracking-[0.12em] py-4 px-7 rounded-xl transition-all duration-75 active:scale-[0.97] active:brightness-95 shadow-md shadow-[#556b2f]/10 touch-manipulation [webkit-tap-highlight-color:transparent]"
+    >
+      <span>Agendar Paquete</span>
+    </button>
   </div>
 </div>
 
-<script define:vars={{ tratamientos, telefonoWhatsApp }}>
-  const modal = document.getElementById('modal');
+<script>
+  let carrito: any[] = [];
+  let resumenAbierto = false;
 
-  window.openModal = (i) => {
-    const data = tratamientos[i];
-    document.getElementById('modal-titulo').innerText = data.nombre;
-    document.getElementById('modal-desc').innerText = data.desc;
-    document.getElementById('modal-beneficios').innerHTML = data.beneficios.map(b => `<li>• ${b}</li>`).join('');
-    
-    const mensaje = `¡Hola! Me interesa agendar una cita para el tratamiento: *${data.nombre}*. ¿Tienen disponibilidad?`;
-    const link = `https://wa.me/${telefonoWhatsApp}?text=${encodeURIComponent(mensaje)}`;
-    
-    document.getElementById('btn-whatsapp').onclick = () => window.open(link, '_blank');
-    modal.classList.replace('hidden', 'flex');
-  };
+  // Comunicación global con el botón de WhatsApp (Casteado como any para evitar quejas de TypeScript)
+  const win = window as any;
+  win.estadoCarritoGlobal = { totalProductos: 0, resumenAbierto: false };
 
-  window.closeModal = () => modal.classList.replace('flex', 'hidden');
+  const botonesSeleccionar = document.querySelectorAll('.btn-seleccionar');
+  const botonesAgendarYa = document.querySelectorAll('.btn-agendar-ya');
+  const botonesDetalles = document.querySelectorAll('.btn-detalles');
+  
+  const barraCarrito = document.getElementById('barra-carrito');
+  const btnToggleResumen = document.getElementById('btn-toggle-resumen');
+  const cuerpoResumen = document.getElementById('cuerpo-resumen');
+  const txtToggle = document.getElementById('txt-toggle');
+  const flechaResumen = document.getElementById('flecha-resumen');
+  const listaResumenItems = document.getElementById('lista-resumen-items');
+  
+  const txtCantidad = document.getElementById('carrito-cantidad');
+  const txtTotal = document.getElementById('carrito-total');
+  const btnEnviar = document.getElementById('btn-enviar-carrito');
+
+  // Lee el número de teléfono desde el atributo HTML del botón
+  const telefonoWhatsApp = btnEnviar?.getAttribute('data-telefono') || "523151195149";
+
+  // Función universal con el enlace corregido y codificación limpia
+  function abrirWhatsApp(mensaje: string) {
+    const linkFinal = `https://wa.me/${telefonoWhatsApp}?text=${encodeURIComponent(mensaje)}`;
+    window.open(linkFinal, '_blank'); 
+  }
+
+  // Renderiza los servicios dentro del resumen con el icono de basurero premium
+  function renderizarListaResumen() {
+    if (!listaResumenItems) return;
+    listaResumenItems.innerHTML = '';
+    
+    carrito.forEach((item) => {
+      const li = document.createElement('li');
+      li.className = 'py-4 flex items-center justify-between text-xs group transition-all duration-200';
+      li.innerHTML = `
+        <div class="flex flex-col text-left pr-4 space-y-0.5">
+          <span class="font-serif text-stone-800 font-medium text-[14px] tracking-wide leading-tight">${item.nombre}</span>
+          <span class="text-[#556b2f] text-[11px] font-medium font-sans tracking-wide">$${item.precio.toLocaleString('es-MX')} MXN</span>
+        </div>
+        <button 
+          data-remove-id="${item.id}" 
+          class="text-stone-400 hover:text-red-500 p-2.5 rounded-full hover:bg-red-50/50 active:bg-red-50 active:text-red-500 transition-all duration-150 [webkit-tap-highlight-color:transparent]"
+          aria-label="Eliminar del paquete"
+        >
+          <svg class="w-4 h-4 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+          </svg>
+        </button>
+      `;
+      listaResumenItems.appendChild(li);
+    });
+
+    // Lógica para borrar desde el resumen y resetear la Card principal en tiempo real
+    listaResumenItems.querySelectorAll('button[data-remove-id]').forEach(btnBasurero => {
+      btnBasurero.addEventListener('click', (e) => {
+        const target = e.currentTarget as HTMLElement;
+        const idParaQuitar = target.getAttribute('data-remove-id');
+        
+        const index = carrito.findIndex(item => item.id === idParaQuitar);
+        if (index > -1) carrito.splice(index, 1);
+
+        const botonCard = document.querySelector(`.btn-seleccionar[data-id="${idParaQuitar}"]`) as HTMLElement;
+        if (botonCard) {
+          botonCard.innerText = "+ Carrito";
+          botonCard.classList.remove('bg-[#556b2f]', 'text-white', 'border-[#556b2f]');
+          botonCard.classList.add('text-stone-900', 'border-stone-900', 'bg-transparent');
+        }
+
+        if (navigator.vibrate) navigator.vibrate(25);
+        actualizarCarritoUI();
+      });
+    });
+  }
+
+  // Despliega u oculta el panel del resumen
+  function toggleResumen(forzarCierre = false) {
+    if (!cuerpoResumen || !txtToggle) return;
+    if (resumenAbierto || forzarCierre) {
+      cuerpoResumen.style.maxHeight = '0px';
+      cuerpoResumen.style.opacity = '0';
+      txtToggle.innerText = 'Ver resumen de servicios';
+      if (flechaResumen) flechaResumen.style.transform = 'rotate(0deg)';
+      resumenAbierto = false;
+    } else {
+      renderizarListaResumen();
+      cuerpoResumen.style.maxHeight = '320px'; 
+      cuerpoResumen.style.opacity = '1';
+      txtToggle.innerText = 'Ocultar resumen';
+      if (flechaResumen) flechaResumen.style.transform = 'rotate(180deg)';
+      resumenAbierto = true;
+    }
+    win.estadoCarritoGlobal.resumenAbierto = resumenAbierto;
+  }
+
+  btnToggleResumen?.addEventListener('click', () => {
+    if (navigator.vibrate) navigator.vibrate(15);
+    toggleResumen();
+  });
+
+  // Controla los textos de la barra inferior y actualiza el estado global compartido
+  function actualizarCarritoUI() {
+    const totalTratamientos = carrito.length;
+    win.estadoCarritoGlobal.totalProductos = totalTratamientos;
+    
+    if (totalTratamientos > 0) {
+      const sumaTotal = carrito.reduce((sum, item) => sum + item.precio, 0);
+      if (txtCantidad) txtCantidad.innerText = `${totalTratamientos} ${totalTratamientos === 1 ? 'TRATAMIENTO' : 'TRATAMIENTOS'}`;
+      if (txtTotal) txtTotal.innerText = `$${sumaTotal.toLocaleString('es-MX')} MXN`;
+      
+      barraCarrito?.classList.remove('translate-y-full');
+      if (resumenAbierto) renderizarListaResumen();
+    } else {
+      toggleResumen(true); 
+      barraCarrito?.classList.add('translate-y-full');
+    }
+  }
+
+  // Acordeón interno de detalles de las Cards
+  botonesDetalles.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const boton = e.currentTarget as HTMLElement;
+      const contenedor = boton.nextElementSibling as HTMLElement;
+      const flecha = boton.querySelector('.icon-flecha') as HTMLElement;
+
+      if (contenedor.style.maxHeight && contenedor.style.maxHeight !== '0px') {
+        contenedor.style.maxHeight = '0px';
+        contenedor.style.opacity = '0';
+        if (flecha) flecha.style.transform = 'rotate(0deg)';
+      } else {
+        contenedor.style.maxHeight = contenedor.scrollHeight + 'px';
+        contenedor.style.opacity = '1';
+        if (flecha) flecha.style.transform = 'rotate(180deg)';
+      }
+    });
+  });
+
+  // Botón "+ Carrito" de cada Card
+  botonesSeleccionar.forEach(boton => {
+    boton.addEventListener('click', (e) => {
+      const btn = e.currentTarget as HTMLElement;
+      const id = btn.getAttribute('data-id');
+      const nombre = btn.getAttribute('data-nombre');
+      const precio = parseInt(btn.getAttribute('data-precio') || '0');
+
+      const index = carrito.findIndex(item => item.id === id);
+      if (navigator.vibrate) navigator.vibrate(30); 
+
+      if (index > -1) {
+        carrito.splice(index, 1);
+        btn.innerText = "+ Carrito";
+        btn.classList.remove('bg-[#556b2f]', 'text-white', 'border-[#556b2f]');
+        btn.classList.add('text-stone-900', 'border-stone-900', 'bg-transparent');
+      } else {
+        carrito.push({ id, nombre, precio });
+        btn.innerText = "✓ Agregado";
+        btn.classList.remove('text-stone-900', 'border-stone-900', 'bg-transparent');
+        btn.classList.add('bg-[#556b2f]', 'text-white', 'border-[#556b2f]');
+      }
+
+      actualizarCarritoUI();
+    });
+  });
+
+  // Botón "Agendar Ya" para un solo servicio directo
+  botonesAgendarYa.forEach(boton => {
+    boton.addEventListener('click', (e) => {
+      if (navigator.vibrate) navigator.vibrate(40);
+      const target = e.currentTarget as HTMLElement;
+      const nombreTratamiento = target.getAttribute('data-nombre') || "";
+      const precioTratamiento = target.getAttribute('data-precio') || "";
+      
+      const mensajeDirecto = `¡Hola! Me interesa agendar una cita directamente para el siguiente tratamiento:\n\n• *${nombreTratamiento}* (${precioTratamiento})\n\n¿Qué horarios tienen disponibles?`;
+      abrirWhatsApp(mensajeDirecto);
+    });
+  });
+
+  // Disparador final para agendar todo el paquete acumulado
+  btnEnviar?.addEventListener('click', () => {
+    if (navigator.vibrate) navigator.vibrate(50);
+    const sumaTotal = carrito.reduce((sum, item) => sum + item.precio, 0);
+    const listaTratamientos = carrito.map(item => `• *${item.nombre}*`).join('\n');
+    
+    const mensajeTexto = `¡Hola! Estuve armando mi paquete en su sitio web y me interesa agendar una consulta para los siguientes tratamientos:\n\n${listaTratamientos}\n\n*Total estimado:* $${sumaTotal.toLocaleString('es-MX')} MXN\n\n¿Qué horarios tienen disponibles?`;
+    abrirWhatsApp(mensajeTexto);
+  });
 </script>
-
-<style>
-  .scrollbar-hide::-webkit-scrollbar { display: none; }
-</style>

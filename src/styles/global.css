@@ -1,18 +1,1 @@
 @import "tailwindcss";
-
-@keyframes sparkle {
-  0% { opacity: 0; transform: scale(0) rotate(0deg); }
-  50% { opacity: 1; transform: scale(1.2) rotate(180deg); }
-  100% { opacity: 0; transform: scale(0) rotate(360deg); }
-}
-
-.animate-magic-sparkle {
-  animation: sparkle 2.5s infinite ease-in-out;
-  
-  /* --- Halo de Brillo para Fondo Blanco (Efecto Borde) --- */
-  /* Capa 1: Halo olivo suave (el brillo de fondo) */
-  /* Capa 2: Un borde olivo oscuro y definido (el "borde" que pides) */
-  filter: 
-    drop-shadow(0 0 5px rgba(85, 107, 47, 0.5)) /* Brillo de fondo */
-    drop-shadow(0 0 1px rgba(85, 107, 47, 1));   /* Borde nítido */
-}

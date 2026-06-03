@@ -2,76 +2,104 @@
 import { Image } from 'astro:assets';
 import fondoImagen from '../assets/FONDO1.avif'; 
 
-const linkWhatsApp = `https://wa.me/523151195149?text=${encodeURIComponent("¡Hola! Me gustaría agendar una consulta.")}`;
+// Ajuste del número correcto para México (sin el 1) y link optimizado para apertura directa
+const telefono = "523151195149"; 
+const mensajeTexto = "¡Hola! Me gustaría agendar una cita";
+const linkWhatsApp = `https://wa.me/${telefono}?text=${encodeURIComponent(mensajeTexto)}`;
 ---
 
-<section class="relative w-full min-h-[90svh] flex flex-col lg:flex-row bg-[#fdfdfc] overflow-hidden">
+<!-- bg-[#fdfdfc] unificado en todos los dispositivos para máxima luminosidad -->
+<section class="relative w-full min-h-[95svh] lg:min-h-[90svh] flex flex-col lg:flex-row bg-[#fdfdfc] overflow-hidden select-none">
   
-  <div class="relative w-full h-[45svh] lg:h-full lg:w-[60%] z-10 shrink-0">
+  <!-- CONTENEDOR DE LA IMAGEN: 
+       Móvil: Ocupa el 45% superior de la pantalla de forma clara y nítida.
+       Escritorio: Se mueve a la derecha ocupando el 55% de forma asimétrica.
+  -->
+  <div class="relative w-full h-[45svh] lg:h-auto lg:w-[55%] lg:order-2 shrink-0 z-10">
     <Image 
       src={fondoImagen} 
-      alt="Cosmética facial" 
+      alt="Cosmética facial personalizada" 
       class="w-full h-full object-cover"
       quality="high"
       format="webp"
+      loading="eager" 
     />
-    <div class="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-r from-[#fdfdfc] via-transparent to-transparent"></div>
+    
+    <!-- DEGRADADOS PREMIUM LUMINOSOS: 
+         Móvil: Desvanecido blanco/crema de abajo hacia arriba para una transición ultra suave.
+         Escritorio: Desvanecido blanco/crema de izquierda a derecha.
+    -->
+    <div class="absolute inset-0 bg-gradient-to-t from-[#fdfdfc] via-[#fdfdfc]/40 to-transparent lg:bg-gradient-to-r lg:from-[#fdfdfc] lg:via-[#fdfdfc]/10 lg:to-transparent z-20"></div>
   </div>
 
-  <div class="relative w-full lg:flex-1 flex flex-col justify-center px-8 py-12 lg:px-20 z-20 bg-[#fdfdfc] items-center lg:items-start text-center lg:text-left">
-    <div class="animate-enter-up space-y-6 max-w-lg mx-auto lg:mx-0">
+  <!-- CONTENEDOR DE TEXTO:
+       Totalmente iluminado, limpio y legible tanto en móvil como en escritorio.
+  -->
+  <div class="relative flex-1 flex flex-col justify-center px-6 py-10 lg:py-8 lg:px-20 z-30 lg:order-1 items-center lg:items-start text-center lg:text-left bg-[#fdfdfc]">
+    <div class="animate-enter-up space-y-5 max-w-md lg:max-w-lg mx-auto lg:mx-0">
+      
+      <!-- Subtítulo elegante oliva -->
       <span class="inline-block text-[10px] font-bold tracking-[0.3em] uppercase text-[#556b2f]">
         TRATAMIENTOS FACIALES A LA MEDIDA
       </span>
 
-      <h1 class="text-4xl md:text-6xl lg:text-7xl font-serif text-stone-900 leading-[0.95] tracking-tight">
+      <!-- Título: Piedra oscuro premium en ambos dispositivos -->
+      <h1 class="text-4xl md:text-5xl lg:text-7xl font-serif text-stone-900 leading-[1.05] tracking-tight">
         Resultados <br />
         <span class="italic text-[#556b2f]">que se notan.</span>
       </h1>
 
-      <p class="text-stone-600 text-lg leading-relaxed">
+      <!-- Párrafo descriptivo en gris piedra suave -->
+      <p class="text-stone-600 text-sm sm:text-base md:text-lg leading-relaxed">
         Elevamos el cuidado de tu piel a un nivel de experiencia premium con tratamientos personalizados.
       </p>
 
+      <!-- Botón de Conversión Táctil -->
       <div class="pt-4 w-full flex justify-center lg:justify-start">
-        <a href={linkWhatsApp} target="_blank" class="relative inline-block w-full max-w-[300px]">
-          <button class="flex items-center justify-center bg-[#556b2f] text-sm text-white font-medium rounded-xl transition-all px-6 py-4 w-full active:scale-95 shadow-lg shadow-[#556b2f]/20" type="button">
+        <a 
+          href={linkWhatsApp} 
+          id="btn-whatsapp"
+          class="relative inline-block w-full max-w-[320px] touch-manipulation [webkit-tap-highlight-color:transparent]"
+        >
+          <span class="flex items-center justify-center bg-[#556b2f] text-base text-white font-medium rounded-xl transition-all duration-75 py-4 w-full active:scale-[0.97] active:brightness-90 shadow-lg shadow-[#556b2f]/20">
             Agendar Consulta
-          </button>
+          </span>
           
-          <div class="absolute inset-0 pointer-events-none text-white">
+          <!-- Chispas Mágicas decorativas -->
+          <div class="absolute inset-0 pointer-events-none text-[#556b2f]/40 hidden md:block">
             <div class="absolute z-10 animate-magic-sparkle" style="top: -15%; left: 95%; animation-delay: 0.5s;"><svg viewBox="0 0 68 68" height="10" width="10"><path fill="currentColor" d="M26.5 25.5C19.0043 33.3697 0 34 0 34C0 34 19.1013 35.3684 26.5 43.5C33.234 50.901 34 68 34 68C34 68 36.9884 50.7065 44.5 43.5C51.6431 36.647 68 34 68 34C68 34 51.6947 32.0939 44.5 25.5C36.5605 18.2235 34 0 34 0C34 0 33.6591 17.9837 26.5 25.5Z"></path></svg></div>
-            <div class="absolute z-10 animate-magic-sparkle" style="top: 7%; left: -5%; animation-delay: 0.33s;"><svg viewBox="0 0 68 68" height="13" width="13"><path fill="currentColor" d="M26.5 25.5C19.0043 33.3697 0 34 0 34C0 34 19.1013 35.3684 26.5 43.5C33.234 50.901 34 68 34 68C34 68 36.9884 50.7065 44.5 43.5C51.6431 36.647 68 34 68 34C68 34 51.6947 32.0939 44.5 25.5C36.5605 18.2235 34 0 34 0C34 0 33.6591 17.9837 26.5 25.5Z"></path></svg></div>
-            <div class="absolute z-10 animate-magic-sparkle" style="top: 93%; left: 23%; animation-delay: 0.6s;"><svg viewBox="0 0 68 68" height="11" width="11"><path fill="currentColor" d="M26.5 25.5C19.0043 33.3697 0 34 0 34C0 34 19.1013 35.3684 26.5 43.5C33.234 50.901 34 68 34 68C34 68 36.9884 50.7065 44.5 43.5C51.6431 36.647 68 34 68 34C68 34 51.6947 32.0939 44.5 25.5C36.5605 18.2235 34 0 34 0C34 0 33.6591 17.9837 26.5 25.5Z"></path></svg></div>
-            <div class="absolute z-10 animate-magic-sparkle" style="top: 43%; left: 10%; animation-delay: 0.9s;"><svg viewBox="0 0 68 68" height="10" width="10"><path fill="currentColor" d="M26.5 25.5C19.0043 33.3697 0 34 0 34C0 34 19.1013 35.3684 26.5 43.5C33.234 50.901 34 68 34 68C34 68 36.9884 50.7065 44.5 43.5C51.6431 36.647 68 34 68 34C68 34 51.6947 32.0939 44.5 25.5C36.5605 18.2235 34 0 34 0C34 0 33.6591 17.9837 26.5 25.5Z"></path></svg></div>
-            <div class="absolute z-10 animate-magic-sparkle" style="top: 100%; left: 5%; animation-delay: 1.2s;"><svg viewBox="0 0 68 68" height="13" width="13"><path fill="currentColor" d="M26.5 25.5C19.0043 33.3697 0 34 0 34C0 34 19.1013 35.3684 26.5 43.5C33.234 50.901 34 68 34 68C34 68 36.9884 50.7065 44.5 43.5C51.6431 36.647 68 34 68 34C68 34 51.6947 32.0939 44.5 25.5C36.5605 18.2235 34 0 34 0C34 0 33.6591 17.9837 26.5 25.5Z"></path></svg></div>
-            <div class="absolute z-10 animate-magic-sparkle" style="top: 15%; left: 88%; animation-delay: 1.5s;"><svg viewBox="0 0 68 68" height="9" width="9"><path fill="currentColor" d="M26.5 25.5C19.0043 33.3697 0 34 0 34C0 34 19.1013 35.3684 26.5 43.5C33.234 50.901 34 68 34 68C34 68 36.9884 50.7065 44.5 43.5C51.6431 36.647 68 34 68 34C68 34 51.6947 32.0939 44.5 25.5C36.5605 18.2235 34 0 34 0C34 0 33.6591 17.9837 26.5 25.5Z"></path></svg></div>
-            <div class="absolute z-10 animate-magic-sparkle" style="top: 99%; left: 95%; animation-delay: 1.8s;"><svg viewBox="0 0 68 68" height="10" width="10"><path fill="currentColor" d="M26.5 25.5C19.0043 33.3697 0 34 0 34C0 34 19.1013 35.3684 26.5 43.5C33.234 50.901 34 68 34 68C34 68 36.9884 50.7065 44.5 43.5C51.6431 36.647 68 34 68 34C68 34 51.6947 32.0939 44.5 25.5C36.5605 18.2235 34 0 34 0C34 0 33.6591 17.9837 26.5 25.5Z"></path></svg></div>
-            <div class="absolute z-10 animate-magic-sparkle" style="top: 64%; left: 99%; animation-delay: 1.9s;"><svg viewBox="0 0 68 68" height="13" width="13"><path fill="currentColor" d="M26.5 25.5C19.0043 33.3697 0 34 0 34C0 34 19.1013 35.3684 26.5 43.5C33.234 50.901 34 68 34 68C34 68 36.9884 50.7065 44.5 43.5C51.6431 36.647 68 34 68 34C68 34 51.6947 32.0939 44.5 25.5C36.5605 18.2235 34 0 34 0C34 0 33.6591 17.9837 26.5 25.5Z"></path></svg></div>
-            <div class="absolute z-10 animate-magic-sparkle" style="top: 14%; left: 45%; animation-delay: 1.4s;"><svg viewBox="0 0 68 68" height="9" width="9"><path fill="currentColor" d="M26.5 25.5C19.0043 33.3697 0 34 0 34C0 34 19.1013 35.3684 26.5 43.5C33.234 50.901 34 68 34 68C34 68 36.9884 50.7065 44.5 43.5C51.6431 36.647 68 34 68 34C68 34 51.6947 32.0939 44.5 25.5C36.5605 18.2235 34 0 34 0C34 0 33.6591 17.9837 26.5 25.5Z"></path></svg></div>
-            <div class="absolute z-10 animate-magic-sparkle" style="top: 0%; left: 48%; animation-delay: 1.7s;"><svg viewBox="0 0 68 68" height="13" width="13"><path fill="currentColor" d="M26.5 25.5C19.0043 33.3697 0 34 0 34C0 34 19.1013 35.3684 26.5 43.5C33.234 50.901 34 68 34 68C34 68 36.9884 50.7065 44.5 43.5C51.6431 36.647 68 34 68 34C68 34 51.6947 32.0939 44.5 25.5C36.5605 18.2235 34 0 34 0C34 0 33.6591 17.9837 26.5 25.5Z"></path></svg></div>
+            <div class="absolute z-10 animate-magic-sparkle" style="top: 93%; left: -5%; animation-delay: 0.6s;"><svg viewBox="0 0 68 68" height="11" width="11"><path fill="currentColor" d="M26.5 25.5C19.0043 33.3697 0 34 0 34C0 34 19.1013 35.3684 26.5 43.5C33.234 50.901 34 68 34 68C34 68 36.9884 50.7065 44.5 43.5C51.6431 36.647 68 34 68 34C68 34 51.6947 32.0939 44.5 25.5C36.5605 18.2235 34 0 34 0C34 0 33.6591 17.9837 26.5 25.5Z"></path></svg></div>
           </div>
         </a>
       </div>
+      
     </div>
   </div>
 </section>
 
+<script>
+  const btn = document.getElementById('btn-whatsapp');
+  if (btn) {
+    btn.addEventListener('click', () => {
+      if (navigator.vibrate) {
+        navigator.vibrate(40); 
+      }
+    });
+  }
+</script>
+
 <style>
   @keyframes enterUp {
-    0% { opacity: 0; transform: translateY(30px); }
+    0% { opacity: 0; transform: translateY(20px); }
     100% { opacity: 1; transform: translateY(0); }
   }
-  .animate-enter-up { animation: enterUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+  .animate-enter-up { animation: enterUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
 
   @keyframes sparkle {
     0%, 100% { opacity: 0; transform: scale(0) rotate(0deg); }
-    50% { opacity: 1; transform: scale(1.2) rotate(180deg); }
+    50% { opacity: 1; transform: scale(1.1) rotate(180deg); }
   }
   .animate-magic-sparkle {
-    animation: sparkle 2.5s infinite ease-in-out;
-    filter: 
-      drop-shadow(0 0 4px rgba(85, 107, 47, 0.6)) 
-      drop-shadow(0 0 1px rgba(85, 107, 47, 1));
+    animation: sparkle 3s infinite ease-in-out;
   }
 </style>

@@ -1,0 +1,111 @@
+---
+// src/components/Ubicacion.astro
+import { Image } from 'astro:assets';
+
+// Asegúrate de tener tu captura de pantalla en esta ruta:
+import mapaCaptura from '../assets/mapa.png'; 
+
+const googleMapsLink = "https://goo.gl";
+const direccionTexto = "Av. Principal 123, Colonia Centro, Ciudad de Ejemplo.";
+---
+
+<section id="ubicacion" class="py-20 bg-[#fdfdfc] select-none">
+  <div class="max-w-5xl mx-auto px-6">
+    
+    <!-- Cabecera de la Sección -->
+    <div class="mb-14 text-center md:text-left md:max-w-md">
+      <span class="text-[10px] font-bold tracking-[0.3em] uppercase text-[#556b2f]">
+        ESTAMOS CERCA DE TI
+      </span>
+      <h2 class="text-3xl md:text-5xl font-serif text-stone-900 mt-2 leading-tight">
+        Visita nuestro <br />
+        <span class="italic text-[#556b2f]">espacio de paz.</span>
+      </h2>
+    </div>
+
+    <!-- Contenedor Principal: Tarjeta Asimétrica Premium -->
+    <div class="bg-white rounded-3xl border border-stone-100/80 shadow-[0_10px_40px_rgba(0,0,0,0.02)] overflow-hidden flex flex-col md:flex-row min-h-[440px]">
+      
+      <!-- Bloque Izquierdo: Información y Horarios -->
+      <div class="p-8 sm:p-10 flex flex-col justify-between flex-grow md:w-[55%] space-y-8">
+        <div class="space-y-6">
+          
+          <!-- Dirección -->
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-xl bg-[#556b2f]/5 flex items-center justify-center text-[#556b2f] text-lg shrink-0 mt-0.5">
+              📍
+            </div>
+            <div>
+              <h3 class="text-xs font-bold tracking-wider text-stone-400 uppercase mb-1">Dirección</h3>
+              <p class="text-stone-800 font-medium text-base leading-relaxed">{direccionTexto}</p>
+            </div>
+          </div>
+
+          <!-- Horarios -->
+          <div class="flex items-start gap-4 pt-4 border-t border-stone-50">
+            <div class="w-10 h-10 rounded-xl bg-[#556b2f]/5 flex items-center justify-center text-[#556b2f] text-lg shrink-0 mt-0.5">
+              🕒
+            </div>
+            <div class="w-full">
+              <h3 class="text-xs font-bold tracking-wider text-stone-400 uppercase mb-2">Horarios de Atención</h3>
+              <div class="grid grid-cols-2 gap-x-4 gap-y-1.5 text-sm text-stone-600">
+                <span class="font-medium text-stone-700">Lunes a Viernes</span>
+                <span class="text-right">9:00 AM - 7:00 PM</span>
+                <span class="font-medium text-stone-700">Sábados</span>
+                <span class="text-right">9:00 AM - 2:00 PM</span>
+                <span class="font-medium text-stone-400">Domingos</span>
+                <span class="text-right text-stone-400 font-light">Cerrado</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Botón de Acción Principal -->
+        <div class="pt-4">
+          <a 
+            href={googleMapsLink}
+            class="btn-gps flex items-center justify-center gap-2 py-4 w-full bg-[#556b2f] text-white text-xs font-bold uppercase tracking-widest rounded-xl transition-all duration-75 active:scale-[0.98] active:brightness-95 shadow-md shadow-[#556b2f]/10 touch-manipulation [webkit-tap-highlight-color:transparent]"
+          >
+            Abrir en Google Maps
+          </a>
+        </div>
+      </div>
+
+      <!-- Bloque Derecho: Contenedor del Mapa Visual con Efecto Blur Avanzado -->
+      <a 
+        href={googleMapsLink} 
+        class="btn-gps relative block w-full md:w-[45%] h-64 md:h-auto bg-stone-50 overflow-hidden group touch-manipulation [webkit-tap-highlight-color:transparent]"
+        aria-label="Ver mapa interactivo en Google Maps"
+      >
+        <!-- Imagen del mapa con desenfoque (blur-sm) inicial que se reduce al interactuar -->
+        <Image 
+          src={mapaCaptura} 
+          alt="Mapa de nuestra ubicación exacta" 
+          class="w-full h-full object-cover blur-sm scale-105 transition-all duration-500 md:group-hover:blur-none md:group-hover:scale-100 active:blur-none active:scale-100 brightness-[0.96] contrast-[1.01]"
+          quality="high"
+        />
+        
+        <!-- Capa oscura superior para mejorar contraste y centrado absoluto del botón -->
+        <div class="absolute inset-0 bg-stone-900/10 flex items-center justify-center p-6">
+          <!-- Botón flotante perfectamente centrado en medio de la imagen -->
+          <div class="bg-white/95 backdrop-blur-md py-3.5 px-6 rounded-2xl shadow-2xl border border-white/50 flex items-center gap-2.5 transition-all duration-300 md:group-hover:bg-white active:scale-95">
+            <span class="text-base">🗺️</span>
+            <span class="text-[10px] font-bold text-stone-800 uppercase tracking-widest whitespace-nowrap">Tocar para iniciar ruta</span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  // Añade la micro-vibración del hardware del teléfono al interactuar
+  document.querySelectorAll('.btn-gps').forEach(elemento => {
+    elemento.addEventListener('click', () => {
+      if (navigator.vibrate) {
+        navigator.vibrate(35); 
+      }
+    });
+  });
+</script>
